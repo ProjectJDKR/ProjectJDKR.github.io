@@ -141,14 +141,18 @@
       color: #e0e0e0;
     }
     .details img {
-      width: 100%;
-      order: 1; /* Image comes first on mobile */
+      width: 75vw; /* Scale with 75% of viewport width */
+      max-width: 100%; /* Prevent overflow */
+      min-width: 200px; /* Minimum size for small screens */
+      height: auto; /* Maintain aspect ratio */
+      order: 1;
+      margin: 0 auto; /* Center horizontally */
     }
     .details p {
       text-align: justify;
       font-size: 0.9em;
       margin: 0;
-      order: 2; /* Text comes after image on mobile */
+      order: 2;
     }
     .reverse .summary {
       flex-direction: column;
@@ -233,11 +237,15 @@
       .details p {
         width: 65%;
         font-size: 1em;
-        order: 1; /* Text first on desktop */
+        order: 1;
       }
       .details img {
-        width: 35%;
-        order: 2; /* Image second on desktop */
+        width: 35%; /* Fixed percentage for desktop */
+        max-width: 300px; /* Upper limit */
+        min-width: 150px; /* Minimum size */
+        height: auto;
+        order: 2;
+        margin: 0; /* No centering on desktop */
       }
       .reverse .summary {
         flex-direction: row-reverse;
@@ -275,7 +283,7 @@
     <div class="details-wrapper">
       <div class="details">
         <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Placeholder Image">
-        <p>This is the more in-depth explanation for section 1. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis/contact us urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+        <p>This is the more in-depth explanation for section 1. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
       </div>
     </div>
   </div>
