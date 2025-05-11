@@ -39,6 +39,36 @@
       margin: 0;
       font-size: 1.5em;
     }
+    .project-nav {
+      background-color: #0066cc;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 10px;
+      flex-wrap: wrap;
+      transition: background-color 0.3s;
+    }
+    body.dark-mode .project-nav {
+      background-color: #004080;
+    }
+    .project-nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .project-nav a.active {
+      background-color: #004494;
+    }
+    .project-nav a:hover {
+      background-color: #0052a3;
+    }
+    body.dark-mode .project-nav a:hover {
+      background-color: #003a6b;
+    }
     nav {
       background-color: #0056b3;
       display: flex;
@@ -64,6 +94,12 @@
     }
     body.dark-mode nav a:hover {
       background-color: #003a6b;
+    }
+    .project-content {
+      display: none;
+    }
+    .project-content.active {
+      display: block;
     }
     .section {
       background: #fff;
@@ -141,12 +177,12 @@
       color: #e0e0e0;
     }
     .details img {
-      width: 75vw; /* Scale with 75% of viewport width */
-      max-width: 100%; /* Prevent overflow */
-      min-width: 200px; /* Minimum size for small screens */
-      height: auto; /* Maintain aspect ratio */
+      width: 75vw;
+      max-width: 100%;
+      min-width: 200px;
+      height: auto;
       order: 1;
-      margin: 0 auto; /* Center horizontally */
+      margin: 0 auto;
     }
     .details p {
       text-align: justify;
@@ -201,6 +237,9 @@
       header h1 {
         font-size: 2em;
       }
+      .project-nav {
+        padding: 10px 0;
+      }
       nav {
         gap: 20px;
         padding: 10px 0;
@@ -240,12 +279,12 @@
         order: 1;
       }
       .details img {
-        width: 35%; /* Fixed percentage for desktop */
-        max-width: 300px; /* Upper limit */
-        min-width: 150px; /* Minimum size */
+        width: 35%;
+        max-width: 300px;
+        min-width: 150px;
         height: auto;
         order: 2;
-        margin: 0; /* No centering on desktop */
+        margin: 0;
       }
       .reverse .summary {
         flex-direction: row-reverse;
@@ -264,78 +303,158 @@
 </head>
 <body class="dark-mode">
   <header>
-    <h1>Website Header Placeholder</h1>
+    <h1>Project Portfolio</h1>
     <button class="toggle-button" onclick="toggleDarkMode()">Light Mode</button>
   </header>
-  <nav>
-    <a href="#sec1">Sec1</a>
-    <a href="#sec2">Sec2</a>
-    <a href="#sec3">Sec3</a>
-    <a href="#sec4">Sec4</a>
-    <a href="#sec5">Sec5</a>
-  </nav>
-  <div class="section" id="sec1">
-    <h2>Section 1</h2>
-    <div class="summary">
-      <p>Short summary or introduction for section 1. This is the first section and the text should be justified so the text extends to both margins like a newspaper column.</p>
-      <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+  <div class="project-nav">
+    <a href="#" onclick="showProject('project1')" class="active">Project1</a>
+    <a href="#" onclick="showProject('project2')">Project2</a>
+  </div>
+  <div id="project1" class="project-content active">
+    <nav>
+      <a href="#sec1">Sec1</a>
+      <a href="#sec2">Sec2</a>
+      <a href="#sec3">Sec3</a>
+      <a href="#sec4">Sec4</a>
+      <a href="#sec5">Sec5</a>
+    </nav>
+    <div class="section" id="sec1">
+      <h2>Section 1</h2>
+      <div class="summary">
+        <p>Short summary or introduction for Project 1, Section 1. This is the first section and the text should be justified so the text extends to both margins like a newspaper column.</p>
+        <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+      </div>
+      <div class="details-wrapper">
+        <div class="details">
+          <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Project 1 Placeholder Image">
+          <p>This is the more in-depth explanation for Project 1, Section 1. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+        </div>
+      </div>
     </div>
-    <div class="details-wrapper">
-      <div class="details">
-        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Placeholder Image">
-        <p>This is the more in-depth explanation for section 1. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+    <div class="section" id="sec2">
+      <h2>Section 2</h2>
+      <div class="summary">
+        <p>Short summary or introduction for Project 1, Section 2. This is the second section. It comes after the first section. This is now justified text that will extend to both margins like a newspaper column while still starting from the left.</p>
+        <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+      </div>
+      <div class="details-wrapper">
+        <div class="details">
+          <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Project 1 Placeholder Image">
+          <p>This is the more in-depth explanation for Project 1, Section 2. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="sec3">
+      <h2>Section 3</h2>
+      <div class="summary">
+        <p>Short summary or introduction for Project 1, Section 3. This text is now justified to both left and right margins. New lines still start from the left margin as in typical text justification. The spacing between words is adjusted so text fills the entire width.</p>
+        <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+      </div>
+      <div class="details-wrapper">
+        <div class="details">
+          <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Project 1 Placeholder Image">
+          <p>This is the more in-depth explanation for Project 1, Section 3. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="sec4">
+      <h2>Section 4</h2>
+      <div class="summary">
+        <p>Short summary or introduction for Project 1, Section 4. Another example of justified text that extends fully from the left margin to the right margin. This creates a clean, newspaper-like appearance with even text edges on both sides.</p>
+        <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+      </div>
+      <div class="details-wrapper">
+        <div class="details">
+          <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Project 1 Placeholder Image">
+          <p>This is the more in-depth explanation for Project 1, Section 4. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+        </div>
+      </div>
+    </div>
+    <div class="section" id="sec5">
+      <h2>Section 5</h2>
+      <div class="summary">
+        <p>Short summary or introduction for Project 1, Section 5. The text-align: justify property has been applied to create this newspaper column effect where text extends fully to both margins while maintaining the standard left-to-right reading flow.</p>
+        <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+      </div>
+      <div class="details-wrapper">
+        <div class="details">
+          <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Project 1 Placeholder Image">
+          <p>This is the more in-depth explanation for Project 1, Section 5. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+        </div>
       </div>
     </div>
   </div>
-  <div class="section" id="sec2">
-    <h2>Section 2</h2>
-    <div class="summary">
-      <p>Short summary or introduction for section 2. This is the second section. It comes after the first section. This is now justified text that will extend to both margins like a newspaper column while still starting from the left.</p>
-      <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
-    </div>
-    <div class="details-wrapper">
-      <div class="details">
-        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Placeholder Image">
-        <p>This is the more in-depth explanation for section 2. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+  <div id="project2" class="project-content">
+    <nav>
+      <a href="#sec2-1">Sec1</a>
+      <a href="#sec2-2">Sec2</a>
+      <a href="#sec2-3">Sec3</a>
+      <a href="#sec2-4">Sec4</a>
+      <a href="#sec2-5">Sec5</a>
+    </nav>
+    <div class="section" id="sec2-1">
+      <h2>Section 1</h2>
+      <div class="summary">
+        <p>Short summary or introduction for Project 2, Section 1. This section introduces the first aspect of the second project with justified text extending to both margins.</p>
+        <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+      </div>
+      <div class="details-wrapper">
+        <div class="details">
+          <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Project 2 Placeholder Image">
+          <p>This is the detailed explanation for Project 2, Section 1. It provides in-depth information about the first part of the second project.<br><br>Curabitur nec justo ac risus malesuada viverra. Phasellus id ex id justo scelerisque eleifend. Integer euismod, metus nec efficitur condimentum, justo lorem facilisis libero, non rutrum urna nunc sit amet metus. Fusce id justo eget nulla aliquam maximus. Sed auctor, lorem sit amet auctor scelerisque, nulla metus dapibus justo, id posuere justo nulla id justo. Vivamus at justo nec risus dictum vulputate. Cras non justo eget nulla hendrerit posuere. Suspendisse potenti. Nam id justo nec justo efficitur rhoncus. Morbi id justo id justo facilisis eleifend.</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="section" id="sec3">
-    <h2>Section 3</h2>
-    <div class="summary">
-      <p>Short summary or introduction for section 3. This text is now justified to both left and right margins. New lines still start from the left margin as in typical text justification. The spacing between words is adjusted so text fills the entire width.</p>
-      <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
-    </div>
-    <div class="details-wrapper">
-      <div class="details">
-        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Placeholder Image">
-        <p>This is the more in-depth explanation for section 3. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+    <div class="section" id="sec2-2">
+      <h2>Section 2</h2>
+      <div class="summary">
+        <p>Short summary or introduction for Project 2, Section 2. This section covers the second aspect of the project with justified text for a clean, professional look.</p>
+        <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+      </div>
+      <div class="details-wrapper">
+        <div class="details">
+          <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Project 2 Placeholder Image">
+          <p>This is the detailed explanation for Project 2, Section 2. It elaborates on the second component of the project.<br><br>Curabitur nec justo ac risus malesuada viverra. Phasellus id ex id justo scelerisque eleifend. Integer euismod, metus nec efficitur condimentum, justo lorem facilisis libero, non rutrum urna nunc sit amet metus. Fusce id justo eget nulla aliquam maximus. Sed auctor, lorem sit amet auctor scelerisque, nulla metus dapibus justo, id posuere justo nulla id justo. Vivamus at justo nec risus dictum vulputate. Cras non justo eget nulla hendrerit posuere. Suspendisse potenti. Nam id justo nec justo efficitur rhoncus. Morbi id justo id justo facilisis eleifend.</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="section" id="sec4">
-    <h2>Section 4</h2>
-    <div class="summary">
-      <p>Short summary or introduction for section 4. Another example of justified text that extends fully from the left margin to the right margin. This creates a clean, newspaper-like appearance with even text edges on both sides.</p>
-      <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
-    </div>
-    <div class="details-wrapper">
-      <div class="details">
-        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Placeholder Image">
-        <p>This is the more in-depth explanation for section 4. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+    <div class="section" id="sec2-3">
+      <h2>Section 3</h2>
+      <div class="summary">
+        <p>Short summary or introduction for Project 2, Section 3. This section highlights the third key element of the second project with justified text.</p>
+        <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+      </div>
+      <div class="details-wrapper">
+        <div class="details">
+          <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Project 2 Placeholder Image">
+          <p>This is the detailed explanation for Project 2, Section 3. It provides further details on the third part of the project.<br><br>Curabitur nec justo ac risus malesuada viverra. Phasellus id ex id justo scelerisque eleifend. Integer euismod, metus nec efficitur condimentum, justo lorem facilisis libero, non rutrum urna nunc sit amet metus. Fusce id justo eget nulla aliquam maximus. Sed auctor, lorem sit amet auctor scelerisque, nulla metus dapibus justo, id posuere justo nulla id justo. Vivamus at justo nec risus dictum vulputate. Cras non justo eget nulla hendrerit posuere. Suspendisse potenti. Nam id justo nec justo efficitur rhoncus. Morbi id justo id justo facilisis eleifend.</p>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="section" id="sec5">
-    <h2>Section 5</h2>
-    <div class="summary">
-      <p>Short summary or introduction for section 5. The text-align: justify property has been applied to create this newspaper column effect where text extends fully to both margins while maintaining the standard left-to-right reading flow.</p>
-      <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+    <div class="section" id="sec2-4">
+      <h2>Section 4</h2>
+      <div class="summary">
+        <p>Short summary or introduction for Project 2, Section 4. This section discusses the fourth aspect of the project with justified text for readability.</p>
+        <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+      </div>
+      <div class="details-wrapper">
+        <div class="details">
+          <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Project 2 Placeholder Image">
+          <p>This is the detailed explanation for Project 2, Section 4. It dives into the fourth component of the project.<br><br>Curabitur nec justo ac risus malesuada viverra. Phasellus id ex id justo scelerisque eleifend. Integer euismod, metus nec efficitur condimentum, justo lorem facilisis libero, non rutrum urna nunc sit amet metus. Fusce id justo eget nulla aliquam maximus. Sed auctor, lorem sit amet auctor scelerisque, nulla metus dapibus justo, id posuere justo nulla id justo. Vivamus at justo nec risus dictum vulputate. Cras non justo eget nulla hendrerit posuere. Suspendisse potenti. Nam id justo nec justo efficitur rhoncus. Morbi id justo id justo facilisis eleifend.</p>
+        </div>
+      </div>
     </div>
-    <div class="details-wrapper">
-      <div class="details">
-        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Placeholder Image">
-        <p>This is the more in-depth explanation for section 5. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+    <div class="section" id="sec2-5">
+      <h2>Section 5</h2>
+      <div class="summary">
+        <p>Short summary or introduction for Project 2, Section 5. This section wraps up the second project with justified text for a polished appearance.</p>
+        <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+      </div>
+      <div class="details-wrapper">
+        <div class="details">
+          <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Project 2 Placeholder Image">
+          <p>This is the detailed explanation for Project 2, Section 5. It concludes the details of the second project.<br><br>Curabitur nec justo ac risus malesuada viverra. Phasellus id ex id justo scelerisque eleifend. Integer euismod, metus nec efficitur condimentum, justo lorem facilisis libero, non rutrum urna nunc sit amet metus. Fusce id justo eget nulla aliquam maximus. Sed auctor, lorem sit amet auctor scelerisque, nulla metus dapibus justo, id posuere justo nulla id justo. Vivamus at justo nec risus dictum vulputate. Cras non justo eget nulla hendrerit posuere. Suspendisse potenti. Nam id justo nec justo efficitur rhoncus. Morbi id justo id justo facilisis eleifend.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -348,9 +467,14 @@
       button.textContent = isExpanded ? '+ READ MORE' : '− READ LESS';
     }
 
-    // Function to set up alternating layouts
-    function setupAlternatingLayouts() {
-      const sections = document.querySelectorAll('.section');
+    // Function to set up alternating layouts for a specific project
+    function setupAlternatingLayouts(projectId) {
+      // Remove reverse class from all sections
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('reverse');
+      });
+      // Apply reverse class to odd-indexed sections (0-based) within the active project
+      const sections = document.querySelectorAll(`#${projectId} .section`);
       sections.forEach((section, index) => {
         if (index % 2 === 1) {
           section.classList.add('reverse');
@@ -367,7 +491,24 @@
       localStorage.setItem('darkMode', isDarkMode);
     }
 
-    // Initialize dark mode based on localStorage
+    // Function to show selected project
+    function showProject(projectId) {
+      // Hide all project content
+      document.querySelectorAll('.project-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      // Show selected project content
+      document.getElementById(projectId).classList.add('active');
+      // Update active nav link
+      document.querySelectorAll('.project-nav a').forEach(link => {
+        link.classList.remove('active');
+      });
+      document.querySelector(`.project-nav a[onclick="showProject('${projectId}')"]`).classList.add('active');
+      // Set up alternating layouts for the selected project
+      setupAlternatingLayouts(projectId);
+    }
+
+    // Initialize dark mode and project view based on localStorage
     function initializeDarkMode() {
       const savedDarkMode = localStorage.getItem('darkMode');
       const body = document.body;
@@ -380,7 +521,8 @@
         body.classList.remove('dark-mode');
         button.textContent = 'Dark Mode';
       }
-      setupAlternatingLayouts();
+      // Show Project1 by default
+      showProject('project1');
     }
 
     // Run when the page loads

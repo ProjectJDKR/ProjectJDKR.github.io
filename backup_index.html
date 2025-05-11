@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <title>Webpage JDKR</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
+      font-size: 16px;
+    }
+    body.dark-mode {
+      background-color: #1a1a1a;
+      color: #e0e0e0;
+    }
+    header {
+      background-color: #007BFF;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      position: relative;
+      transition: background-color 0.3s;
+    }
+    body.dark-mode header {
+      background-color: #003d99;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+    nav {
+      background-color: #0056b3;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+      flex-wrap: wrap;
+      transition: background-color 0.3s;
+    }
+    body.dark-mode nav {
+      background-color: #002d72;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 0.9em;
+    }
+    nav a:hover {
+      background-color: #004494;
+    }
+    body.dark-mode nav a:hover {
+      background-color: #003a6b;
+    }
+    .section {
+      background: #fff;
+      margin: 15px;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 800px;
+      transition: all 0.3s ease-in-out;
+    }
+    body.dark-mode .section {
+      background: #2c2c2c;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+    .section img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      display: block;
+    }
+    .summary {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: stretch;
+      margin: 0 10px;
+    }
+    .summary p {
+      text-align: justify;
+      margin: 0;
+      font-size: 0.95em;
+    }
+    .reverse .summary p {
+      text-align: justify;
+    }
+    .expand-button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+      text-transform: uppercase;
+      align-self: center;
+      width: fit-content;
+    }
+    body.dark-mode .expand-button {
+      background: #0056b3;
+    }
+    .expand-button:hover {
+      background: #0056b3;
+    }
+    body.dark-mode .expand-button:hover {
+      background: #004494;
+    }
+    .details-wrapper {
+      display: none;
+    }
+    .section.expanded .details-wrapper {
+      display: block;
+    }
+    .details {
+      margin-top: 10px;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: stretch;
+      transition: color 0.3s;
+    }
+    body.dark-mode .details {
+      color: #e0e0e0;
+    }
+    .details img {
+      width: 75vw; /* Scale with 75% of viewport width */
+      max-width: 100%; /* Prevent overflow */
+      min-width: 200px; /* Minimum size for small screens */
+      height: auto; /* Maintain aspect ratio */
+      order: 1;
+      margin: 0 auto; /* Center horizontally */
+    }
+    .details p {
+      text-align: justify;
+      font-size: 0.9em;
+      margin: 0;
+      order: 2;
+    }
+    .reverse .summary {
+      flex-direction: column;
+    }
+    .reverse .details {
+      flex-direction: column;
+    }
+    .section h2 {
+      text-align: center;
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+    .reverse h2 {
+      text-align: center;
+    }
+    .toggle-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #fff;
+      color: #007BFF;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.8em;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark-mode .toggle-button {
+      background: #e0e0e0;
+      color: #003d99;
+    }
+    .toggle-button:hover {
+      background: #e0e0e0;
+    }
+    body.dark-mode .toggle-button:hover {
+      background: #cccccc;
+    }
+
+    /* Desktop-specific styles */
+    @media (min-width: 768px) {
+      header {
+        padding: 20px;
+      }
+      header h1 {
+        font-size: 2em;
+      }
+      nav {
+        gap: 20px;
+        padding: 10px 0;
+      }
+      nav a {
+        padding: 5px 10px;
+        font-size: 1em;
+      }
+      .section {
+        margin: 20px auto;
+        padding: 20px;
+      }
+      .summary {
+        flex-direction: row;
+        align-items: center;
+        margin: 0 20px;
+        gap: 20px;
+      }
+      .summary p {
+        flex: 1;
+        font-size: 1em;
+      }
+      .expand-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
+      }
+      .details {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 15px;
+        gap: 20px;
+      }
+      .details p {
+        width: 65%;
+        font-size: 1em;
+        order: 1;
+      }
+      .details img {
+        width: 35%; /* Fixed percentage for desktop */
+        max-width: 300px; /* Upper limit */
+        min-width: 150px; /* Minimum size */
+        height: auto;
+        order: 2;
+        margin: 0; /* No centering on desktop */
+      }
+      .reverse .summary {
+        flex-direction: row-reverse;
+      }
+      .reverse .details {
+        flex-direction: row-reverse;
+      }
+      .toggle-button {
+        top: 20px;
+        right: 20px;
+        padding: 8px 16px;
+        font-size: 0.9em;
+      }
+    }
+  </style>
+</head>
+<body class="dark-mode">
+  <header>
+    <h1>Website Header Placeholder</h1>
+    <button class="toggle-button" onclick="toggleDarkMode()">Light Mode</button>
+  </header>
+  <nav>
+    <a href="#sec1">Sec1</a>
+    <a href="#sec2">Sec2</a>
+    <a href="#sec3">Sec3</a>
+    <a href="#sec4">Sec4</a>
+    <a href="#sec5">Sec5</a>
+  </nav>
+  <div class="section" id="sec1">
+    <h2>Section 1</h2>
+    <div class="summary">
+      <p>Short summary or introduction for section 1. This is the first section and the text should be justified so the text extends to both margins like a newspaper column.</p>
+      <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+    </div>
+    <div class="details-wrapper">
+      <div class="details">
+        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Placeholder Image">
+        <p>This is the more in-depth explanation for section 1. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="sec2">
+    <h2>Section 2</h2>
+    <div class="summary">
+      <p>Short summary or introduction for section 2. This is the second section. It comes after the first section. This is now justified text that will extend to both margins like a newspaper column while still starting from the left.</p>
+      <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+    </div>
+    <div class="details-wrapper">
+      <div class="details">
+        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Placeholder Image">
+        <p>This is the more in-depth explanation for section 2. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="sec3">
+    <h2>Section 3</h2>
+    <div class="summary">
+      <p>Short summary or introduction for section 3. This text is now justified to both left and right margins. New lines still start from the left margin as in typical text justification. The spacing between words is adjusted so text fills the entire width.</p>
+      <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+    </div>
+    <div class="details-wrapper">
+      <div class="details">
+        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Placeholder Image">
+        <p>This is the more in-depth explanation for section 3. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="sec4">
+    <h2>Section 4</h2>
+    <div class="summary">
+      <p>Short summary or introduction for section 4. Another example of justified text that extends fully from the left margin to the right margin. This creates a clean, newspaper-like appearance with even text edges on both sides.</p>
+      <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+    </div>
+    <div class="details-wrapper">
+      <div class="details">
+        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Placeholder Image">
+        <p>This is the more in-depth explanation for section 4. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+      </div>
+    </div>
+  </div>
+  <div class="section" id="sec5">
+    <h2>Section 5</h2>
+    <div class="summary">
+      <p>Short summary or introduction for section 5. The text-align: justify property has been applied to create this newspaper column effect where text extends fully to both margins while maintaining the standard left-to-right reading flow.</p>
+      <button class="expand-button" onclick="toggleSection(this)">+ READ MORE</button>
+    </div>
+    <div class="details-wrapper">
+      <div class="details">
+        <img src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg" alt="Placeholder Image">
+        <p>This is the more in-depth explanation for section 5. You can include additional details here that will appear when the button is clicked.<br><br>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus, ligula tincidunt dignissim mollis, magna enim imperdiet risus, a gravida ipsum nunc at nunc. Sed pharetra luctus est ut rhoncus. Aliquam in suscipit augue. Vivamus laoreet, nulla quis gravida tristique, sem urna lobortis nisi, vel luctus orci purus ac sapien. Duis urna lacus, tempor sed eros pretium, maximus vehicula tellus. Aenean non odio sit amet nulla maximus iaculis eu ut dui. Mauris at nibh ut metus aliquet dictum. Proin a dolor accumsan, pretium lorem maximus, mattis augue. Vestibulum ut mattis erat. Mauris ullamcorper sagittis ante sit amet bibendum. Aliquam erat volutpat. Suspendisse ac felis ornare, placerat massa sed, feugiat metus.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Function to toggle section expansion
+    function toggleSection(button) {
+      const section = button.closest('.section');
+      const isExpanded = section.classList.contains('expanded');
+      section.classList.toggle('expanded');
+      button.textContent = isExpanded ? '+ READ MORE' : '− READ LESS';
+    }
+
+    // Function to set up alternating layouts
+    function setupAlternatingLayouts() {
+      const sections = document.querySelectorAll('.section');
+      sections.forEach((section, index) => {
+        if (index % 2 === 1) {
+          section.classList.add('reverse');
+        }
+      });
+    }
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      const body = document.body;
+      const isDarkMode = body.classList.toggle('dark-mode');
+      const button = document.querySelector('.toggle-button');
+      button.textContent = isDarkMode ? 'Light Mode' : 'Dark Mode';
+      localStorage.setItem('darkMode', isDarkMode);
+    }
+
+    // Initialize dark mode based on localStorage
+    function initializeDarkMode() {
+      const savedDarkMode = localStorage.getItem('darkMode');
+      const body = document.body;
+      const button = document.querySelector('.toggle-button');
+      // Apply dark mode by default unless explicitly set to false in localStorage
+      if (savedDarkMode === null || savedDarkMode === 'true') {
+        body.classList.add('dark-mode');
+        button.textContent = 'Light Mode';
+      } else {
+        body.classList.remove('dark-mode');
+        button.textContent = 'Dark Mode';
+      }
+      setupAlternatingLayouts();
+    }
+
+    // Run when the page loads
+    document.addEventListener('DOMContentLoaded', initializeDarkMode);
+  </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93e349cbbaf8b093',t:'MTc0Njk4MzQxMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
