@@ -690,6 +690,44 @@ Before collecting any names, we agreed on how we would define local, national, a
     // Run when the page loads
     document.addEventListener('DOMContentLoaded', initializeDarkMode);
   </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Create modal elements
+      const modal = document.createElement('div');
+      modal.style.display = 'none';
+      modal.style.position = 'fixed';
+      modal.style.top = '0';
+      modal.style.left = '0';
+      modal.style.width = '100%';
+      modal.style.height = '100%';
+      modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+      modal.style.zIndex = '1000';
+      modal.style.alignItems = 'center';
+      modal.style.justifyContent = 'center';
+
+      const modalImg = document.createElement('img');
+      modalImg.style.maxWidth = '90%';
+      modalImg.style.maxHeight = '90%';
+      modalImg.style.objectFit = 'contain';
+      modal.appendChild(modalImg);
+
+      document.body.appendChild(modal);
+
+      // Add click event to all images
+      document.querySelectorAll('img').forEach(img => {
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', () => {
+          modal.style.display = 'flex';
+          modalImg.src = img.src;
+        });
+      });
+
+      // Close modal on click
+      modal.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+    });
+  </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93e349cbbaf8b093',t:'MTc0Njk4MzQxMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
