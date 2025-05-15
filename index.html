@@ -79,7 +79,10 @@
       justify-content: center;
       gap: 10px;
       padding: 10px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      flex: 0 0 auto;
+      overflow-x: auto;
+      direction: ltr;
       transition: background-color 0.3s;
     }
     body.dark-mode nav {
@@ -250,6 +253,13 @@
         font-size: 0.7em;
         color: lightgray;
       }
+    
+    /* Mobile-specific */
+    @media (max-width: 767px) {
+      nav {
+        justify-content: flex-start;
+      }
+    }  
 
 
     /* Desktop-specific styles */
